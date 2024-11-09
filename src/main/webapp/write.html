@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Write</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <style>
+        .navbar {
+            margin-bottom: 50px;
+            border-radius: 0;
+        }
+
+        .jumbotron {
+            margin-bottom: 0;
+        }
+
+        footer {
+            background-color: #f2f2f2;
+            padding: 25px;
+        }
+
+        .pink {
+            background-color: #ebccd1;
+            text-decoration: underline;
+            border-radius: 5px;
+        }
+
+        .text {
+            color: black;
+        }
+
+        .margin0 {
+            margin-top: -50px;
+            padding-top: 30;
+        }
+    </style>
+
+    <script>
+        function check(event) {
+            let f = document.form;
+
+            let fname = f.bname;
+            if (fname.value == '') {
+                alert('책 이름을 입력하세요');
+                event.preventDefault();
+                return false;
+            }
+
+            let img = f.bimg;
+            if (img.value == '') {
+                alert('사진은 필수 항목입니다');
+                event.preventDefault();
+                return false;
+            }
+
+            let author = f.bauthor;
+            if (author.value == '') {
+                alert('작가명을 입력하세요');
+                event.preventDefault();
+                return false;
+            }
+
+            let my = f.bmy;
+            if (my.value.length < 7) {
+                alert('한줄평은 7글자 이상 입력되어야 합니다.');
+                event.preventDefault();
+                return false;
+            }
+
+            alert("게시물이 추가됩니다");
+            return true;
+        }
+    </script>
+</head>
+
+<body>
+
+<div class="jumbotron">
+    <div class="container text-center">
+        <h1>도서관리 시스템</h1>
+        <p>View, Edit, <h class="pink">Add,</h> Delete</p>
+    </div>
+</div>
+
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">Add</a>
+        </div>
+    </div>
+</nav>
+
+<footer class="pink margin0">
+    <h1 class="form-inline text-center">Add new book<br></h1>
+    <form name="form" class="form-inline" action="write_ok.jsp" method="post" onsubmit="return check(event)">
+        도서명:<br><input type="text" class="form-control" placeholder="Book name" name="bname"><br>
+        이미지:<br><input type="file" name="bimg"><br>
+        작가:<br><input type="text" class="form-control" placeholder="Author" name="bauthor"><br>
+        출판사:<br> <select class="text" name="bpublish">
+        <option>Choose...</option>
+        <option>위즈덤하우스</option>
+        <option>문학동네</option>
+        <option>다산북스</option>
+        <option>미더텅</option>
+        <option>그 외</option>
+    </select><br>
+        출판년도:<br><input type="date" class="form-control" name="bdate"><br>
+        한줄평:<br><textarea rows="5" cols="80" name="bmy"></textarea><br>
+
+        <input type="checkbox" /> 즐겨찾기에 추가<br>
+
+        <input type="submit" class="btn btn-danger" value="추가">
+    </form>
+</footer>
+
+</body>
+
+</html>

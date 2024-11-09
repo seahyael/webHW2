@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Edit</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <style>
+        .navbar {
+            margin-bottom: 50px;
+            border-radius: 0;
+        }
+
+        .jumbotron {
+            margin-bottom: 0;
+        }
+
+        footer {
+            background-color: #d6e9c6;
+            padding: 25px;
+        }
+
+        .margin0 {
+            margin-top: -50px;
+            padding-top: 30;
+        }
+
+        .name {
+            color: black;
+        }
+
+        .green {
+            background-color: #d6e9c6;
+            color: white;
+            text-decoration: underline;
+            border-radius: 5px;
+        }
+    </style>
+    <script>
+        function check(event) {
+            let fname = document.querySelector('input[type="text"]').value;
+            if (fname === '') {
+                alert('책 이름을 입력하세요');
+                event.preventDefault();
+                return false;
+            }
+
+            let author = document.querySelectorAll('input[type="text"]')[1].value;
+            if (author === '') {
+                alert('작가명을 입력하세요');
+                event.preventDefault();
+                return false;
+            }
+
+            let my = document.querySelector('textarea').value;
+            if (my.length < 7) {
+                alert('한줄평은 7글자 이상 입력되어야 합니다.');
+                event.preventDefault();
+                return false;
+            }
+
+            return true;
+        }
+
+        function edi(event) {
+            if (confirm('게시물을 수정할까요?')) {
+                console.log("수정되었습니다.");
+            } else {
+                event.preventDefault();
+                return false;
+            }
+        }
+
+        function handleSubmit(event) {
+            if (check(event)) {
+                edi(event);
+            } else {
+                event.preventDefault();
+            }
+        }
+    </script>
+</head>
+
+<body>
+
+<div class="jumbotron">
+    <div class="container text-center">
+        <h1>도서관리 시스템</h1>
+        <p>View, <span class="green">Edit,</span> Add, Delete</p>
+    </div>
+</div>
+
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">Edit</a>
+        </div>
+    </div>
+</nav>
+
+<!-- Form 추가 -->
+<form action="./edit_ok.jsp" method="POST" onsubmit="handleSubmit(event)">
+    <footer class="margin0">
+        <h1>도서명:
+            <input type="text" class="form-control" name="bookName" value="나미야 잡화점의 기적" />
+        </h1>
+        <img src="https://th.bing.com/th/id/R.873a12bffe6b335eb54e370ae6b1a2b5?rik=7faTR4WHBPPrig&riu=http%3a%2f%2fimage.yes24.com%2fGoods%2f8157957%2fXL&ehk=lrp5zMEmhv%2fbAtSxQc2FNbS5Yb3I1dNFqaFn3GjuHMU%3d&risl=&pid=ImgRaw&r=0"
+             alt="나미야 잡화점의 기적" class="img-responsive" />
+        <p>새 이미지: <input type="file" class="form-control" name="newImage" /></p>
+        <br>
+        <p>작가:
+            <input type="text" class="form-control" name="author" value="히가시노 게이고" />
+        </p>
+        <p>출판사:
+            <input type="text" class="form-control" name="publisher" value="그외" />
+        </p>
+        <p>출판년도:
+            <input type="date" class="form-control" name="publishDate" value="2012-03-01" />
+        </p>
+        <p>한줄평:
+            <textarea class="form-control" name="review" rows="3">오가는 편지속 전해지는 따뜻한 사람들의 이야기</textarea>
+        </p>
+        <input type="submit" class="btn btn-danger" value="수정">
+    </footer>
+</form>
+
+</body>
+
+</html>
